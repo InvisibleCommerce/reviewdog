@@ -305,7 +305,7 @@ github_release() {
   giturl="https://api.github.com/repos/${owner_repo}/reviewdog/releases/tags/${version}"
   json=$(http_copy "$giturl" "Accept:application/json")
   test -z "$json" && return 1
-  version=$(echo "$json" | tr -s '\n' ' ' | sed 's/.*"tag_name": "//' | sed 's/".*//')
+  version=$(echo "$json" | tr -s '\n' ' ' | sed 's/.*"tag_name":s/"//' | sed 's/".*//')
   test -z "$version" && return 1
   echo "$version"
 }
